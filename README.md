@@ -50,28 +50,44 @@ Following Day 4 Kaggle Best Practices, this agent operates within a strict Zero 
 
 ## 🏗️ Architecture Flow
 
-```
-┌──────────────────────────────────────────────────────┐
-│        User Input (Unstructured Semantics)            │
-└──────────────────────┬───────────────────────────────┘
-                       │ Pydantic Structured Constraints
-┌──────────────────────▼───────────────────────────────┐
-│              Orchestrator Agent (ADK)                  │
-│   Parses Intent → Parallellizes API Tool Calls        │
-└──────────┬───────────────────────┬────────────────────┘
-           │ Progressive Disclosure│ Shifting Intelligence Left
-┌──────────▼──────┐     ┌──────────▼──────────────────┐
-│  Asset Fetcher  │     │       Auto Layout           │
-│                 │     │                             │
-│ Egress Governed │     │ layout_engine.py inside     │
-│ PolyHaven APIs  │     │ Blender. Calculates grid.   │
-└──────────┬──────┘     └──────────┬────────────────────┘
-           └──────────┬────────────┘
-                      │ MCP Protocol (v1.0.0)
-┌─────────────────────▼────────────────────────────────┐
-│           Blender MCP Server (Deterministic)          │
-│   Imports GLTF, Sets up World Nodes, Purges Orphans   │
-└──────────────────────────────────────────────────────┘
+```mermaid
+%%{init: {'theme': 'dark', 'themeVariables': { 'edgeLabelBackground': '#1E293B', 'lineColor': '#94A3B8'}}}%%
+flowchart TD
+    %% 企業級冷色調極簡配色 (Corporate Minimalist Theme)
+    classDef user fill:#1E293B,stroke:#0F172A,stroke-width:2px,color:#fff,rx:10,ry:10
+    classDef ai fill:#2563EB,stroke:#1D4ED8,stroke-width:2px,color:#fff,rx:5,ry:5
+    classDef python fill:#059669,stroke:#047857,stroke-width:2px,color:#fff,rx:5,ry:5
+    classDef security fill:#6D28D9,stroke:#4C1D95,stroke-width:2px,color:#fff,rx:5,ry:5
+    classDef external fill:#D97706,stroke:#B45309,stroke-width:2px,color:#fff,rx:10,ry:10
+
+    User(("👤 User Prompt")):::user --> Orchestrator
+
+    subgraph "1. Agentic Layer (Google ADK)"
+        Orchestrator["🧠 Gemini 2.5 Flash<br>(Intent Parsing & Router)"]:::ai
+    end
+
+    subgraph "2. Skill & Network Layer"
+        direction LR
+        Skills["📦 Python Skill Modules<br>(HDRI, Material, Asset, Layout)"]:::python
+        PolyHaven[("☁️ Poly Haven API<br>(Zero-Trust Egress)")]:::external
+        
+        Skills -.->|  Fetch Assets  | PolyHaven
+        PolyHaven -.->|  GLTF / EXR  | Skills
+    end
+
+    subgraph "3. Sandbox Execution Layer"
+        direction LR
+        AST{"🛡️ AST Validator<br>(Security)"}:::security
+        MCP["🔌 MCP Bridge"]:::security
+        Blender[("🧊 Blender 5.1")]:::external
+        
+        AST -->|  Validation  | MCP
+        MCP -->|  Subprocess  | Blender
+    end
+
+    %% 資料流向 (由上至下依序傳遞)
+    Orchestrator -->|  Parallel Calls  | Skills
+    Skills -->|  Inject Script  | AST
 ```
 
 ---
