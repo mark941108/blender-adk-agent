@@ -12,9 +12,9 @@
 
 ## 🎯 Architecture Overview
 
-This project provides a deterministic pipeline for 3D environment generation. Traditional automation scripts fail to parse non-deterministic human intent (e.g., semantic environment descriptors like "sunset living room"). 
+In modern 3D production, the true bottleneck for indie game developers and artists is no longer layout or design, but the tedious process of "Asset Preparation." Sourcing high-quality 3D models, downloading GLTF files, unzipping textures, importing them into Blender, and linking PBR materials consumes hours of repetitive, non-creative labor. 
 
-Our **Scene Assembler Agent** solves this by employing an ADK 2.0 Orchestrator Agent to map unstructured semantic requests to structured, idempotent REST API queries against the Poly Haven asset library, orchestrating Blender 5.1 via the Model Context Protocol (MCP 1.0.0).
+Our **Semantic Asset Retrieval & Preparation Assistant** solves this by employing the 2026 "Human-on-the-Loop" (HOTL) paradigm. Instead of attempting to fully automate artistic layout, an ADK 2.0 Orchestrator acts as an intelligent middleware. It maps fuzzy semantic requests (e.g., "sunset living room") to structured, idempotent REST API queries against the Poly Haven asset library, fetching and injecting assets directly into Blender 5.1 via the Model Context Protocol (MCP 1.0.0). This allows the human artist to bypass file I/O and instantly take creative control over the final aesthetic arrangement.
 
 ---
 
