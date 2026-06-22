@@ -1,0 +1,1 @@
+Launch args: ['D:\\blender\\blender-5.1.1-windows-x64\\blender-5.1.1-windows-x64\\blender.exe', '--factory-startup', '--python', 'blender_scripts/mcp_bridge.py']

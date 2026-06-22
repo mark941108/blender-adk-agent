@@ -1,0 +1,27 @@
+# Environments
+.env
+.env.*
+__pycache__/
+
+# Assets
+temp_assets/
+*.gltf
+*.glb
+*.exr
+*.hdr
+*.bin
+
+# AI & IDE Metadata
+.gemini/
+.cursor/
+.vscode/
+
+# Scratch & Logs
+test_sw.py
+test_fetcher_real.py
+scratch/
+*.log
+
+# Ignore draft audits that AI shouldn't use as context anymore
+*audit*.md
+*walkthrough*.md

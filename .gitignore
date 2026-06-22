@@ -1,0 +1,25 @@
+# Environments
+.env
+.env.*
+__pycache__/
+
+# Assets (Heavy binary files downloaded by the Agent)
+temp_assets/
+*.gltf
+*.glb
+*.exr
+*.hdr
+*.bin
+*.jpg
+*.png
+
+# AI & IDE Metadata
+.gemini/
+.cursor/
+.vscode/
+
+# Scratch & Logs
+test_sw.py
+test_fetcher_real.py
+scratch/
+*.log
